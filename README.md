@@ -21,3 +21,44 @@ This makes it possible to prepare notifications to be displayed at a particular 
 ## Non-goals
 * Define a comprehensive set of possible triggers.
 
+# Example code
+
+## Scheduling a reminder ten minutes before an appointment
+```javascript
+async function createAppointment(tag, title, timestamp) {
+  // .. create the appointment in application-level code ..
+
+  // Schedule a reminder to be shown to the user:
+  await swRegistration.showNotification(title, {
+    tag, body: 'Your appointment is due in ten minutes!',
+    showTrigger: new TimestampTrigger(timestamp - TEN_MINUTES)
+  });
+}
+```
+
+## Canceling a previously scheduled reminder
+```javascript
+async function cancelAppointment(tag) {
+  const notifications = await swRegistration.getNotifications({
+    tag, includeScheduled: true
+  });
+
+  if (notifications && notifications.length >= 1)
+    notifications[0].close();
+}
+```
+
+# Design decision
+
+## Using `showNotification()` and `getNotifications()`
+The Notification API extends the `ServiceWorkerRegistration` interface [with two methods](https://notifications.spec.whatwg.org/#service-worker-api): `showNotification` and `getNotifications`. Particularly the former implies that something is going to happen _now_, which could lead to confusion.
+
+## Triggers or a `deliveryTime` property?
+
+## Involving or exlucindg the Service Worker?
+
+# References and acknowledgements
+* [Notifications API](https://notifications.spec.whatwg.org/)
+* [Push API](https://w3c.github.io/push-api/)
+
+Many thanks to @rknoll for the initial idea, and @jakearchibald for their ideas, input and discussion.
