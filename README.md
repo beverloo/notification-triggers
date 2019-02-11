@@ -54,6 +54,8 @@ async function cancelAppointment(tag) {
 ## Using `showNotification()` and `getNotifications()`
 The Notification API extends the `ServiceWorkerRegistration` interface [with two methods](https://notifications.spec.whatwg.org/#service-worker-api): `showNotification` and `getNotifications`. Particularly the former implies that something is going to happen _now_, which could lead to confusion.
 
+Today our proposal builds on top of these APIs for simplicity, as can be seen in the [WebIDL proposal](IDL.md). An alternative would be to introduce new methods. These methods would likely share prototypes, interaction models and underlying algorithms, so the added value of doing this is unclear.
+
 ## Triggers or a `deliveryTime` property?
 The introduction of the concept of Triggers makes this API easily extensible without changes. It also enables us to use the same concept for other APIs that would benefit of a delayed trigger point. In the case of time-based triggers we already identified at least one other type that triggers based on the local timezone of the device. This would allow certain use cases like alarm clocks and are easy to define as a new trigger type. Using a `deliveryTime` property would make adding use cases like this more confusing.
 
