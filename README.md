@@ -1,7 +1,7 @@
 # Notification Triggers
 
 **Written**: 2019-01-28<br/>
-**Updated**: 2019-01-28
+**Updated**: 2019-02-11
 
 Web developers have the ability to display notifications using the [Notifications API](https://notifications.spec.whatwg.org/). This ability is often used in collaboration with the [Push API](https://w3c.github.io/push-api/) to inform the user of time-sensitive information, such as a breaking news article or a received message. Notifications are then shown by allowing JavaScript code to run on the user's device.
 
@@ -22,6 +22,7 @@ This makes it possible to prepare notifications to be displayed at a particular 
 * Define a comprehensive set of possible triggers.
 
 # Example code
+Please see [this separate document](IDL.md) for the proposed WebIDL additions.
 
 ## Scheduling a reminder ten minutes before an appointment
 ```javascript
