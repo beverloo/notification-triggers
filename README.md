@@ -41,7 +41,7 @@ async function createAppointment(tag, title, timestamp) {
 ```javascript
 async function cancelAppointment(tag) {
   const notifications = await swRegistration.getNotifications({
-    tag, includeScheduled: true
+    tag, includeTriggered: true
   });
 
   if (notifications && notifications.length >= 1)

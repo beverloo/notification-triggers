@@ -20,6 +20,12 @@ partial dictionary NotificationOptions {
 };
 
 partial dictionary GetNotificationOptions {
-  boolean includeScheduled = false;
+  boolean includeTriggered = false;
 };
+
+partial interface Notification {
+  [SameObject] readonly attribute Trigger showTrigger;
+}
 ```
+
+The [create a notification](https://notifications.spec.whatwg.org/#create-a-notification) algorithm will be amended to throw a `TypeError` exception when a `showTrigger` has been provided, but not a `serviceWorkerRegistration`. This removes the ability to use _notification triggers_ for non-persistent notifications, which inherently are tied to the lifetime of the document.
