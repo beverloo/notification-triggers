@@ -7,7 +7,7 @@ Web developers have the ability to display notifications using the [Notification
 
 **Notification Triggers** are a mechanism for preparing notifications that are to be shown when certain conditions are met. The _trigger_ could be time-based, location-based or otherwise—for this explainer, we'll focus on time-based triggers.
 
-This makes it possible to prepare notifications to be displayed at a particular time without involving the server, and also improves reliability by removing the dependency on network connectivity. This can be essential for the user experience of certain types of web applications, for example calendars.
+This makes it possible to prepare notifications to be displayed at a particular time without involving the server, and also improves reliability by removing the dependency on network connectivity. This can be essential for the user experience of certain types of web applications, for example calendars. To reduce misuse of this API, a notification can only be scheduled for up to 1 year in advance.
 
 ## Why do we care?
 * The Push API is not reliable for triggering notifications which must be shown at a particular time. The ability to receive messages depends on the device's connectivity, and features such as _deep sleep_ may further delay delivery. An example where this is important are notifications reminding you of a 5 AM departure time to the airport.
