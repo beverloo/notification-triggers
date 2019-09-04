@@ -66,7 +66,7 @@ By excluding the Service Worker from the triggering part we can leverage optimiz
 
 This API is only available in the context of a `ServiceWorkerRegistration`. This implies that all required data is stored in the same context and is automatically deleted when the ServiceWorker is deleted or the user deletes all site data for that origin. Blocking cookies also prevents ServiceWorkers, and therefore this API, from being used.
 
-The only alternative to this API right now is to use the Push API. This allows sites to run JavaScript when receiving a push event and fetch additional data via the network. With Notification Triggers this is not the case anymore as all required data to display the notification has to be supplied beforehand. A site would therefore only make network requests while the user is actively using it.
+The only alternative to this API right now is to use the Push API. This allows sites to run JavaScript when receiving a push event and fetch additional data via the network. With Notification Triggers this is not the case anymore as all required data to display the notification has to be supplied beforehand. Showing a scheduled notification at the chosen time therefore doesn't require network connectivity, nor will cause any developer-observable effects.
 
 # References and acknowledgements
 * [Notifications API](https://notifications.spec.whatwg.org/)
