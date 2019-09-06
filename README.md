@@ -62,6 +62,12 @@ The introduction of the concept of Triggers makes this API easily extensible wit
 ## Involving or excluding the Service Worker?
 By excluding the Service Worker from the triggering part we can leverage optimizations on platforms like macOS, where we could use native APIs to delay showing the notifications, or on Android using the native task scheduling to reduce performance impact on the system. It is also reduces the chances of user tracking by not allowing network requests. The downside of this decision is that developers have to decide beforehand what content to show to the user. However, as this API is aimed at the offline experience, they would have to do this anyway because there there might not be an active network connection after defining the Notification.
 
+# Privacy considerations
+
+This API is only available in the context of a `ServiceWorkerRegistration`. This implies that all required data is stored in the same context and is automatically deleted when the ServiceWorker is deleted or the user deletes all site data for that origin. Blocking cookies also prevents ServiceWorkers, and therefore this API, from being used.
+
+The only alternative to this API right now is to use the Push API. This allows sites to run JavaScript when receiving a push event and fetch additional data via the network. With Notification Triggers this is not the case anymore as all required data to display the notification has to be supplied beforehand. Showing a scheduled notification at the chosen time therefore doesn't require network connectivity, nor will cause any developer-observable effects.
+
 # References and acknowledgements
 * [Notifications API](https://notifications.spec.whatwg.org/)
 * [Push API](https://w3c.github.io/push-api/)
